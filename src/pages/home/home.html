@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Quiz Me
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-slides #mcq_slides loop="false" speed="500" pager="true">
+    <ion-slide *ngFor="let mcq_question of mcq_questions">
+        <h1>{{ mcq_question.question }}</h1>
+        <ion-list radio-group>
+          <ion-item *ngFor="let choice of mcq_question.choices">
+            <ion-label>{{ choice.name }} </ion-label>
+            <ion-radio
+              value=" {{ choice.name }}"
+              (ionSelect)="onOptionselect(mcq_question, choice)"
+            ></ion-radio>
+          </ion-item>
+        </ion-list>
+        <button
+          ion-button
+          [disabled]="!mcq_question.next_enabled"
+          (click)="goToNextQuestion()"
+        >
+          Next
+        </button>
+    </ion-slide>
+
+    <ion-slide>
+        <h2>Result</h2>
+        <ion-list>
+          <ion-item *ngFor="let result of results">
+             <ion-icon item-start name="{{ result.correct?'checkmark':'close'}}"></ion-icon>
+            <h2 text-wrap>{{ result.question }}</h2>
+            <h3>{{ result.answer }}</h3>
+          </ion-item>
+        </ion-list>
+        <button (click)="restartQuiz()" ion-button full color="primary">
+          Start Again
+        </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
