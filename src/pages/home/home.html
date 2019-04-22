@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-slides #mcq_slides loop="false" speed="500" pager="true">
+  <ion-slides #mcq_slides loop="false" speed="500" pager="true" class="container">
     <ion-slide *ngFor="let mcq_question of mcq_questions">
         <h1>{{ mcq_question.question }}</h1>
         <ion-list radio-group>

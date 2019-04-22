@@ -1,4 +1,9 @@
-page-home {
+page-sign-up {
+.error-msg,
+.error-msg p {
+  color: #f53d3d;
+}
+
 .container {
   max-width: 720px;
   margin: 0 auto;
